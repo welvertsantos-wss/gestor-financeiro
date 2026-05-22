@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e86f2d" />
+    <meta name="description" content="Gestor financeiro pessoal e empresarial instalável para uso offline." />
+    <title>Gestor Financeiro ERP</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Menu principal">
+      <div class="brand">
+        <span class="brand-mark" id="brandMark">GF</span>
+        <div>
+          <strong id="brandName">Gestor Financeiro</strong>
+          <small id="brandSubtitle">ERP financeiro inteligente</small>
+        </div>
+      </div>
+
+      <div class="scope-switch" aria-label="Tipo de financeiro">
+        <button class="scope-button active" data-scope="empresa">Empresa</button>
+        <button class="scope-button" data-scope="pessoal">Pessoal</button>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-button active" data-view="dashboard">Dashboard</button>
+        <button class="nav-button" data-view="receitas">Receitas</button>
+        <button class="nav-button" data-view="receber">A receber</button>
+        <button class="nav-button" data-view="saidas">Saídas</button>
+        <button class="nav-button" data-view="clientes">Clientes</button>
+        <button class="nav-button" data-view="fornecedores">Fornecedores</button>
+        <button class="nav-button" data-view="relatorio">Relatório</button>
+        <button class="nav-button" data-view="configuracoes">Configurações</button>
+      </nav>
+
+      <div class="sidebar-actions">
+        <button class="ghost-button" id="installApp" hidden>Instalar app</button>
+        <button class="ghost-button" id="openSheetImport" type="button">Importar planilha</button>
+        <button class="ghost-button" id="exportCsv">Exportar planilha</button>
+        <button class="ghost-button" id="exportData">Backup JSON</button>
+        <label class="ghost-button file-button" for="importData">Restaurar backup</label>
+        <input id="importData" type="file" accept=".json,application/json" />
+        <button class="danger-button" id="clearData">Limpar tudo</button>
+      </div>
+      <div class="sidebar-account">
+        <span>Conta em destaque</span>
+        <strong id="sidebarMainBank">-</strong>
+        <small>Gerenciar conta</small>
+        <small class="version-badge">Versão premium 2.0</small>
+      </div>
+    </aside>
+
+    <main class="app">
+      <header class="topbar">
+        <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu">Menu</button>
+        <div class="title-block">
+          <p class="eyebrow" id="scopeLabel">Financeiro empresa</p>
+          <h1 id="pageTitle">Dashboard</h1>
+          <p class="page-subtitle">Visão geral da saúde financeira do seu negócio</p>
+        </div>
+        <div class="topbar-tools">
+          <div class="user-switcher">
+            <label for="activeUser">Usuário</label>
+            <select id="activeUser"></select>
+          </div>
+          <div class="global-search" role="search">
+            <span aria-hidden="true">L</span>
+            <input id="globalSearch" type="search" placeholder="Buscar gasto, receita, banco, cliente..." autocomplete="off" />
+            <div id="globalSearchResults" class="global-search-results"></div>
+          </div>
+          <div class="period-filter" aria-label="Filtro de periodo">
+            <label for="monthFilter">Mês</label>
+            <input id="monthFilter" type="month" />
+            <button id="resetMonth" class="icon-button" title="Ver todos os meses" aria-label="Ver todos os meses">R</button>
+          </div>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar modo escuro">Escuro</button>
+          <button class="cloud-status" id="cloudStatus" type="button">Local</button>
+          <button class="theme-toggle" id="logoutButton" type="button" hidden>Sair</button>
+          <button class="profile-avatar" type="button" aria-label="Perfil">R</button>
+        </div>
+      </header>
+      <button class="sidebar-scrim" type="button" aria-label="Fechar menu"></button>
+
+      <section id="dashboard" class="view active">
+        <section class="operation-strip" aria-label="Operação financeira">
+          <div>
+            <span>Saldo operacional</span>
+            <strong id="opBalance">R$ 0,00</strong>
+          </div>
+          <div>
+            <span>Entradas hoje</span>
+            <strong id="opTodayIncome">R$ 0,00</strong>
+          </div>
+          <div>
+            <span>Saídas hoje</span>
+            <strong id="opTodayExpense">R$ 0,00</strong>
+          </div>
+          <div>
+            <span>Pendências</span>
+            <strong id="opPending">0</strong>
+          </div>
+          <div>
+            <span>Conta em destaque</span>
+            <strong id="opMainBank">-</strong>
+          </div>
+        </section>
+
+        <div class="shortcut-grid" aria-label="Atalhos financeiros">
+          <button class="shortcut" data-shortcut="receitas"><span>+</span>Receita</button>
+          <button class="shortcut" data-shortcut="saldo"><span>=</span>Saldo</button>
+          <button class="shortcut" data-shortcut="receber"><span>$</span>A receber</button>
+          <button class="shortcut" data-shortcut="fluxo"><span>~</span>Fluxo de caixa</button>
+          <button class="shortcut" data-shortcut="saidas"><span>-</span>Saída</button>
+          <button class="shortcut" data-shortcut="relatorio"><span>#</span>Relatório mensal</button>
+        </div>
+
+        <div class="metrics-grid" id="metricsAnchor">
+          <article class="metric clickable-metric" data-metric-filter="income">
+            <span>Receitas recebidas</span>
+            <strong id="metricIncome">R$ 0,00</strong>
+          </article>
+          <article class="metric clickable-metric" data-metric-filter="receivable">
+            <span>A receber</span>
+            <strong id="metricReceivable">R$ 0,00</strong>
+          </article>
+          <article class="metric clickable-metric" data-metric-filter="expense">
+            <span>Saídas pagas</span>
+            <strong id="metricExpenses">R$ 0,00</strong>
+          </article>
+          <article class="metric balance">
+            <span>Saldo previsto</span>
+            <strong id="metricBalance">R$ 0,00</strong>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel wide" id="cashflowPanel">
+            <div class="panel-header">
+              <div>
+                <h2>Fluxo mensal</h2>
+                <p>Receitas, saídas e saldo por mês</p>
+              </div>
+            </div>
+            <canvas id="cashflowChart" width="900" height="360" aria-label="Gráfico de fluxo mensal"></canvas>
+          </section>
+          <section class="panel wide calendar-panel">
+            <div class="panel-header">
+              <div>
+                <h2>Calendário financeiro</h2>
+                <p>Dias com receitas, saídas e valores a receber</p>
+              </div>
+            </div>
+            <div class="calendar-shell">
+              <div id="financeCalendar" class="finance-calendar"></div>
+              <aside id="calendarDetails" class="calendar-details"></aside>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Distribuição</h2>
+                <p>Clique para consultar os lançamentos</p>
+              </div>
+            </div>
+            <canvas id="donutChart" width="420" height="320" aria-label="Gráfico de distribuição"></canvas>
+            <div id="distributionDetails" class="distribution-actions"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Próximos recebimentos</h2>
+                <p>Itens pendentes em ordem de vencimento</p>
+              </div>
+            </div>
+            <div id="upcomingList" class="compact-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="receitas" class="view">
+        <div class="split-layout">
+          <form class="panel form-panel" data-form="income">
+            <h2>Nova receita</h2>
+            <label>Descrição<input name="description" list="incomeItemOptions" required placeholder="Ex: Venda de serviço" /></label>
+            <label>Cliente<input name="person" list="clientOptions" placeholder="Cliente ou origem" /></label>
+            <label>Tipo financeiro<input name="category" list="incomeCategoryOptions" placeholder="Ex: RECEITAS PRINCIPAIS" /></label>
+            <div class="form-row">
+              <label>Valor<input name="amount" type="number" min="0" step="0.01" required /></label>
+              <label>Data<input name="date" type="date" required /></label>
+            </div>
+            <div class="form-row">
+              <label>Pagamento<input name="payment" list="paymentOptions" placeholder="PIX, Cartão, Boleto" /></label>
+              <label>Banco<input name="bank" list="bankOptions" placeholder="Banco ou conta" /></label>
+            </div>
+            <label>Observação<textarea name="notes" rows="3" placeholder="Detalhes do lançamento"></textarea></label>
+            <button class="primary-button" type="submit">Adicionar receita</button>
+          </form>
+          <section class="panel table-panel">
+            <div class="panel-header">
+              <h2>Receitas cadastradas</h2>
+              <input class="search" data-search="income" placeholder="Buscar receita" />
+            </div>
+            <div class="active-filter" data-filter-bar="income"></div>
+            <div class="table-wrap"><table id="incomeTable"></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="receber" class="view">
+        <div class="split-layout">
+          <form class="panel form-panel" data-form="receivable">
+            <h2>Novo valor a receber</h2>
+            <label>Descrição<input name="description" required placeholder="Ex: Parcela contrato" /></label>
+            <label>Cliente<input name="person" list="clientOptions" placeholder="Cliente" /></label>
+            <div class="form-row">
+              <label>Valor<input name="amount" type="number" min="0" step="0.01" required /></label>
+              <label>Vencimento<input name="date" type="date" required /></label>
+            </div>
+            <label>Status
+              <select name="status">
+                <option value="Pendente">Pendente</option>
+                <option value="Recebido">Recebido</option>
+              </select>
+            </label>
+            <button class="primary-button" type="submit">Adicionar conta</button>
+          </form>
+          <section class="panel table-panel">
+            <div class="panel-header">
+              <h2>Contas a receber</h2>
+              <input class="search" data-search="receivable" placeholder="Buscar conta" />
+            </div>
+            <div class="active-filter" data-filter-bar="receivable"></div>
+            <div class="table-wrap"><table id="receivableTable"></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="saidas" class="view">
+        <div class="split-layout">
+          <form class="panel form-panel" data-form="expense">
+            <h2>Nova saída</h2>
+            <label>Descrição<input name="description" list="expenseItemOptions" required placeholder="Ex: Aluguel" /></label>
+            <label>Fornecedor<input name="person" list="supplierOptions" placeholder="Fornecedor" /></label>
+            <label>Tipo financeiro<input name="category" list="expenseCategoryOptions" placeholder="Ex: CUSTOS VARIAVEIS" /></label>
+            <div class="form-row">
+              <label>Valor<input name="amount" type="number" min="0" step="0.01" required /></label>
+              <label>Data<input name="date" type="date" required /></label>
+            </div>
+            <div class="form-row">
+              <label>Pagamento<input name="payment" list="paymentOptions" placeholder="PIX, Cartão, Boleto" /></label>
+              <label>Banco<input name="bank" list="bankOptions" placeholder="Banco ou conta" /></label>
+            </div>
+            <label>Observação<textarea name="notes" rows="3" placeholder="Detalhes do lançamento"></textarea></label>
+            <button class="primary-button" type="submit">Adicionar saída</button>
+          </form>
+          <section class="panel table-panel">
+            <div class="panel-header">
+              <h2>Saídas cadastradas</h2>
+              <input class="search" data-search="expense" placeholder="Buscar saída" />
+            </div>
+            <div class="active-filter" data-filter-bar="expense"></div>
+            <div class="table-wrap"><table id="expenseTable"></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="clientes" class="view">
+        <div class="split-layout">
+          <form class="panel form-panel" data-form="client">
+            <h2>Novo cliente</h2>
+            <label>Nome<input name="name" required placeholder="Nome do cliente" /></label>
+            <label>Telefone<input name="phone" placeholder="(00) 00000-0000" /></label>
+            <label>Email<input name="email" type="email" placeholder="cliente@email.com" /></label>
+            <label>Observação<textarea name="notes" rows="4" placeholder="Detalhes importantes"></textarea></label>
+            <button class="primary-button" type="submit">Cadastrar cliente</button>
+          </form>
+          <section class="panel table-panel">
+            <div class="panel-header">
+              <h2>Clientes</h2>
+              <input class="search" data-search="client" placeholder="Buscar cliente" />
+            </div>
+            <div class="table-wrap"><table id="clientTable"></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="fornecedores" class="view">
+        <div class="split-layout">
+          <form class="panel form-panel" data-form="supplier">
+            <h2>Novo fornecedor</h2>
+            <label>Nome<input name="name" required placeholder="Nome do fornecedor" /></label>
+            <label>Telefone<input name="phone" placeholder="(00) 00000-0000" /></label>
+            <label>Email<input name="email" type="email" placeholder="fornecedor@email.com" /></label>
+            <label>Serviço/produto<textarea name="notes" rows="4" placeholder="O que fornece"></textarea></label>
+            <button class="primary-button" type="submit">Cadastrar fornecedor</button>
+          </form>
+          <section class="panel table-panel">
+            <div class="panel-header">
+              <h2>Fornecedores</h2>
+              <input class="search" data-search="supplier" placeholder="Buscar fornecedor" />
+            </div>
+            <div class="table-wrap"><table id="supplierTable"></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="relatorio" class="view">
+        <div class="report-toolbar">
+          <button class="primary-button" id="generateReport">Atualizar relatório mensal</button>
+          <button class="ghost-light" id="printReport">Imprimir ou salvar PDF</button>
+          <button class="ghost-light" id="exportReportCsv">Exportar relatório CSV</button>
+        </div>
+        <section class="report-page" id="reportPage"></section>
+      </section>
+
+      <section id="configuracoes" class="view">
+        <div class="settings-layout">
+          <div class="settings-main">
+            <section class="settings-summary" id="settingsSummary"></section>
+
+            <div class="quick-config-grid">
+              <form class="panel form-panel quick-add-form" data-quick-kind="incomeCategories">
+                <h2>Nova categoria de receita</h2>
+                <label>Nome<input name="name" required placeholder="Ex: Serviços, Vendas, Assinatura" /></label>
+                <button class="primary-button" type="submit">Adicionar categoria</button>
+              </form>
+
+              <form class="panel form-panel quick-add-form" data-quick-kind="expenseCategories">
+                <h2>Nova categoria de gasto</h2>
+                <label>Nome<input name="name" required placeholder="Ex: Material, Impostos, Combustível" /></label>
+                <button class="primary-button" type="submit">Adicionar categoria</button>
+              </form>
+
+              <form class="panel form-panel quick-add-form" data-quick-kind="incomeItems">
+                <h2>Novo serviço/produto</h2>
+                <label>Nome<input name="name" required placeholder="Ex: Instalação de câmeras" /></label>
+                <button class="primary-button" type="submit">Adicionar serviço</button>
+              </form>
+
+              <form class="panel form-panel quick-add-form" data-quick-kind="banks">
+                <h2>Novo banco ou carteira</h2>
+                <label>Nome<input name="name" required placeholder="Ex: Caixa PJ, Dinheiro, Mercado Pago" /></label>
+                <button class="primary-button" type="submit">Adicionar banco</button>
+              </form>
+
+              <form class="panel form-panel quick-add-form" data-quick-kind="users">
+                <h2>Novo usuário</h2>
+                <label>Nome<input name="name" required placeholder="Ex: Wagner, Financeiro, Vendedor" /></label>
+                <button class="primary-button" type="submit">Adicionar usuário</button>
+              </form>
+            </div>
+
+            <section class="panel recent-settings-panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Atalhos cadastrados</h2>
+                  <p>Últimos itens usados nos lançamentos</p>
+                </div>
+              </div>
+              <div id="settingsList"></div>
+            </section>
+
+            <details class="panel advanced-settings">
+              <summary>Aparência, logo e importação</summary>
+              <div class="advanced-settings-grid">
+                <form class="form-panel" id="brandingForm">
+                  <h2>Logo e identificação</h2>
+                  <label>Nome exibido<input name="companyName" placeholder="Nome da empresa" /></label>
+                  <label>Subtítulo<input name="subtitle" placeholder="Pessoal e empresarial" /></label>
+                  <label>Iniciais da logo<input name="logoText" maxlength="4" placeholder="GF" /></label>
+                  <label>Imagem da logo<input id="logoUpload" type="file" accept="image/*" /></label>
+                  <button class="primary-button" type="submit">Salvar identidade</button>
+                </form>
+
+                <form class="form-panel" id="themeForm">
+                  <h2>Cores do sistema</h2>
+                  <label>Tema rápido
+                    <select name="themePreset">
+                      <option value="orange">Laranja ERP</option>
+                      <option value="blue">Azul corporativo</option>
+                      <option value="green">Verde financeiro</option>
+                      <option value="dark">Escuro operacional</option>
+                    </select>
+                  </label>
+                  <div class="form-row">
+                    <label>Cor principal<input name="primaryColor" type="color" value="#e86f2d" /></label>
+                    <label>Menu lateral<input name="sidebarColor" type="color" value="#d85b1b" /></label>
+                  </div>
+                  <button class="primary-button" type="submit">Aplicar cores</button>
+                </form>
+
+                <section class="helper-panel">
+                  <h2>Importação por planilha</h2>
+                  <p>Importe CSV ou cole dados do Excel. O sistema mostra uma prévia antes de gravar.</p>
+                  <button class="ghost-light" id="openSheetImportSettings" type="button">Importar planilha</button>
+                  <button class="ghost-light" id="downloadTemplate">Baixar modelo CSV</button>
+                  <button class="ghost-light" id="loadSpreadsheetBase" type="button">Carregar base da planilha TESTE</button>
+                </section>
+              </div>
+            </details>
+          </div>
+
+          <aside class="help-panel">
+            <div class="help-title">
+              <span>?</span>
+              <div>
+                <h2>Ajuda de cadastro</h2>
+                <p>Use conforme a rotina do dia a dia</p>
+              </div>
+            </div>
+            <button class="help-button" data-help-target="receitas">Cadastrar receita</button>
+            <button class="help-button" data-help-target="saidas">Cadastrar gasto</button>
+            <button class="help-button" data-help-target="clientes">Cadastrar cliente</button>
+            <button class="help-button" data-help-target="fornecedores">Cadastrar fornecedor</button>
+            <div class="help-box">
+              <strong>Atalho de bancos</strong>
+              <p>Cadastre contas como banco, dinheiro, maquininha, carteira digital ou conta PJ. Depois elas aparecem automaticamente nos lançamentos.</p>
+            </div>
+            <div class="help-box">
+              <strong>Categorias simples</strong>
+              <p>Use poucas categorias no inicio. Exemplo: Receita principal, Receita extra, Custo fixo, Custo variavel.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <datalist id="clientOptions"></datalist>
+    <datalist id="supplierOptions"></datalist>
+    <datalist id="incomeCategoryOptions"></datalist>
+    <datalist id="expenseCategoryOptions"></datalist>
+    <datalist id="paymentOptions"></datalist>
+    <datalist id="bankOptions"></datalist>
+    <datalist id="incomeItemOptions"></datalist>
+    <datalist id="expenseItemOptions"></datalist>
+    <div id="detailModal" class="detail-modal" aria-hidden="true">
+      <div class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <button class="detail-close" id="closeDetail" type="button" aria-label="Fechar detalhe">X</button>
+        <div id="detailContent"></div>
+      </div>
+    </div>
+    <div id="importModal" class="detail-modal import-modal" aria-hidden="true">
+      <div class="detail-card import-card" role="dialog" aria-modal="true" aria-labelledby="importTitle">
+        <button class="detail-close" id="closeImport" type="button" aria-label="Fechar importação">X</button>
+        <div class="import-head">
+          <span>Importação assistida</span>
+          <h2 id="importTitle">Importar planilha</h2>
+          <p>Envie um CSV ou cole os dados copiados do Excel. Nada será gravado antes da confirmação.</p>
+        </div>
+        <div class="import-steps">
+          <section class="import-step">
+            <strong>1. Enviar arquivo ou colar dados</strong>
+            <label class="import-drop" for="sheetImportFile">
+              <span>Selecionar CSV</span>
+              <small>Use arquivo .csv exportado do Excel ou Google Sheets.</small>
+            </label>
+            <input id="sheetImportFile" type="file" accept=".csv,.txt,text/csv,text/plain" />
+            <label>Colar da planilha<textarea id="sheetPasteArea" rows="6" placeholder="Cole aqui as linhas copiadas do Excel, incluindo o cabeçalho"></textarea></label>
+            <button class="ghost-light" id="previewPastedSheet" type="button">Pré-visualizar dados colados</button>
+          </section>
+          <section class="import-step">
+            <strong>2. Conferir antes de importar</strong>
+            <div id="importSummary" class="import-summary empty">Aguardando planilha.</div>
+            <div class="table-wrap import-preview-wrap"><table id="importPreviewTable"></table></div>
+            <div id="importErrors" class="import-errors"></div>
+          </section>
+        </div>
+        <div class="import-actions">
+          <button class="ghost-light" id="cancelImport" type="button">Cancelar</button>
+          <button class="ghost-light" id="downloadImportErrors" type="button" hidden>Baixar linhas com erro</button>
+          <button class="primary-button" id="confirmImport" type="button" disabled>Confirmar importação</button>
+        </div>
+      </div>
+    </div>
+    <div id="authGate" class="auth-gate" aria-hidden="true">
+      <section class="auth-card">
+        <div class="auth-copy">
+          <span>Gestor Financeiro Cloud</span>
+          <h2>Entre para salvar seus dados com segurança</h2>
+          <p>Use login por e-mail e senha, recuperação de senha e sincronização com banco Supabase. O modo local continua disponível para testes.</p>
+          <p class="auth-warning">Se o login não carregar no teste local, publique em HTTPS no Netlify e atualize a página.</p>
+        </div>
+        <div id="authMessage" class="auth-message" role="status"></div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="login" type="button">Entrar</button>
+          <button class="auth-tab" data-auth-tab="signup" type="button">Criar conta</button>
+          <button class="auth-tab" data-auth-tab="reset" type="button">Redefinir senha</button>
+        </div>
+        <form class="auth-form active" data-auth-form="login">
+          <label>Email<input name="email" type="email" required placeholder="voce@email.com" /></label>
+          <label>Senha<input name="password" type="password" required minlength="6" placeholder="Sua senha" /></label>
+          <button class="primary-button" type="submit">Entrar no sistema</button>
+        </form>
+        <form class="auth-form" data-auth-form="signup">
+          <label>Nome da empresa<input name="companyName" required placeholder="Nome da empresa" /></label>
+          <label>Email<input name="email" type="email" required placeholder="voce@email.com" /></label>
+          <label>Senha<input name="password" type="password" required minlength="6" placeholder="Mínimo 6 caracteres" /></label>
+          <button class="primary-button" type="submit">Criar acesso</button>
+        </form>
+        <form class="auth-form" data-auth-form="reset">
+          <label>Email<input name="email" type="email" required placeholder="voce@email.com" /></label>
+          <button class="primary-button" type="submit">Enviar recuperação</button>
+        </form>
+        <button class="ghost-light auth-local" id="continueLocal" type="button">Continuar em modo local</button>
+      </section>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      window.supabase || document.write('<script src="https://unpkg.com/@supabase/supabase-js@2"><\\/script>');
+    </script>
+    <script src="app.js?v=brand-app-15"></script>
+  </body>
+</html>

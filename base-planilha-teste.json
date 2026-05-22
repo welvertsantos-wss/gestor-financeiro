@@ -1,0 +1,698 @@
+{
+  "settings": {
+    "companyName": "WS Sistemas",
+    "subtitle": "Base replicada da planilha Controle Financeiro",
+    "logoText": "WS",
+    "logoImage": "",
+    "incomeCategories": [
+      "RECEITAS PRINCIPAIS",
+      "RECEITAS OUTRAS"
+    ],
+    "expenseCategories": [
+      "CUSTOS FIXOS",
+      "CUSTOS VARIAVEIS"
+    ],
+    "quickItems": [
+      "ALMOÇO",
+      "APARTAMENTO",
+      "COMBUSTIVEL",
+      "CONTABILIDADE",
+      "DIVERSOS",
+      "DWS TECH SOLUCION",
+      "Equipamento instalação",
+      "Fornecedor 1 REGIONAL",
+      "Fornecedor 5 DIPROSEG",
+      "IMPOSTO",
+      "MERCADO",
+      "PRESTAÇÃO DE SERVIÇOS",
+      "PRESTAÇÃO MOTO",
+      "RUBEN AJUDANTE",
+      "WS SISTEMAS SERVIÇOS",
+      "serviços diversos"
+    ],
+    "banks": [
+      "INFINITEPAY PJ",
+      "ITAU PF",
+      "MERCADO PAGO PJ",
+      "NU BANK"
+    ],
+    "payments": [
+      "Boleto",
+      "Cartão",
+      "PIX"
+    ],
+    "incomeItems": [
+      "Cliente 3",
+      "Cliente 4",
+      "Cliente 5",
+      "DWS TECH SOLUCION",
+      "PRESTAÇÃO DE SERVIÇOS",
+      "WAGNER AUTOMAÇÃO",
+      "WS SISTEMAS EQUIPMENTOS",
+      "WS SISTEMAS SERVIÇOS",
+      "WS SISTEMAS VENDAS",
+      "ENTREGAS",
+      "Investimentos",
+      "serviços diversos"
+    ],
+    "expenseItems": [
+      "Aluguel",
+      "CONTABILIDADE",
+      "CONTA CELULAR",
+      "APARTAMENTO",
+      "PRESTAÇÃO MOTO",
+      "ALMOÇO",
+      "COMBUSTIVEL",
+      "Despesas de Escritório",
+      "DIVERSOS",
+      "Equipamento instalação",
+      "FERRAMENTAS",
+      "Fornecedor 1 REGIONAL",
+      "Fornecedor 2 ELITE",
+      "Fornecedor 3 BELLFONE",
+      "Fornecedor 4 IP CAM",
+      "Fornecedor 5 DIPROSEG",
+      "IMPOSTO",
+      "Manutenção de Equipamentos",
+      "MERCADO",
+      "RUBEN AJUDANTE"
+    ]
+  },
+  "income": [
+    {
+      "id": "0001",
+      "scope": "empresa",
+      "date": "2026-05-02",
+      "category": "RECEITAS OUTRAS",
+      "description": "serviços diversos",
+      "amount": 550.0,
+      "payment": "PIX",
+      "bank": "NU BANK",
+      "notes": "AJUDA MUDANÇA MARCENARIA",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0004",
+      "scope": "empresa",
+      "date": "2026-05-05",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "WS SISTEMAS SERVIÇOS",
+      "amount": 4600.0,
+      "payment": "Cartão",
+      "bank": "INFINITEPAY PJ",
+      "notes": "INSTALAÇAO DE CAMERAS / MATERIAL",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0010",
+      "scope": "empresa",
+      "date": "2026-05-08",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "WS SISTEMAS SERVIÇOS",
+      "amount": 3882.0,
+      "payment": "Cartão",
+      "bank": "INFINITEPAY PJ",
+      "notes": "INSTALAÇAO DE CAMERAS / MATERIAL",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0018",
+      "scope": "empresa",
+      "date": "2026-05-11",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "WS SISTEMAS SERVIÇOS",
+      "amount": 1736.0,
+      "payment": "Cartão",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0019",
+      "scope": "empresa",
+      "date": "2026-05-11",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "PRESTAÇÃO DE SERVIÇOS",
+      "amount": 200.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "VISITA CAJAMAR DESLOCAMENTO",
+      "person": "ELITE"
+    },
+    {
+      "id": "0022",
+      "scope": "empresa",
+      "date": "2026-05-12",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "WS SISTEMAS SERVIÇOS",
+      "amount": 152.73,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "COMISSÃO BELLFONE",
+      "person": "BELFONE"
+    },
+    {
+      "id": "0029",
+      "scope": "empresa",
+      "date": "2026-05-14",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "WS SISTEMAS SERVIÇOS",
+      "amount": 164.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "MANUTENÇÃO INTERFONE",
+      "person": "FABIANO"
+    },
+    {
+      "id": "0030",
+      "scope": "empresa",
+      "date": "2026-05-15",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "DWS TECH SOLUCION",
+      "amount": 2126.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "PRESTAÇÃO DE SERVIÇOS",
+      "person": "DWS"
+    },
+    {
+      "id": "0031",
+      "scope": "empresa",
+      "date": "2026-05-15",
+      "category": "RECEITAS PRINCIPAIS",
+      "description": "WS SISTEMAS SERVIÇOS",
+      "amount": 320.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "MANUTENÇÃO INTERFONE",
+      "person": "WILIAM SP"
+    }
+  ],
+  "receivable": [],
+  "expense": [
+    {
+      "id": "0002",
+      "scope": "empresa",
+      "date": "2026-05-02",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Equipamento instalação",
+      "amount": 230.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "FECHADURA CONDOMINIO HELIO",
+      "person": "HELIO"
+    },
+    {
+      "id": "0003",
+      "scope": "empresa",
+      "date": "2026-05-02",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Equipamento instalação",
+      "amount": 100.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "CHAVEIRO CONDOMINIO HELIO",
+      "person": "HELIO"
+    },
+    {
+      "id": "0005",
+      "scope": "empresa",
+      "date": "2026-05-05",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "COMBUSTIVEL",
+      "amount": 86.07,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "GASOLINA MOTO",
+      "person": "WS"
+    },
+    {
+      "id": "0006",
+      "scope": "empresa",
+      "date": "2026-05-05",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "RUBEN AJUDANTE",
+      "amount": 500.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "PAGAMENTO RUBEN",
+      "person": "RUBEN"
+    },
+    {
+      "id": "0007",
+      "scope": "empresa",
+      "date": "2026-05-06",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Fornecedor 1 REGIONAL",
+      "amount": 2748.0,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0008",
+      "scope": "empresa",
+      "date": "2026-05-07",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Fornecedor 5 DIPROSEG",
+      "amount": 512.91,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0009",
+      "scope": "empresa",
+      "date": "2026-05-07",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Fornecedor 5 DIPROSEG",
+      "amount": 310.0,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0011",
+      "scope": "empresa",
+      "date": "2026-05-08",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Fornecedor 5 DIPROSEG",
+      "amount": 29.9,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0012",
+      "scope": "empresa",
+      "date": "2026-05-08",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "COMBUSTIVEL",
+      "amount": 50.0,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "COMBUSTIVEL KANGOO",
+      "person": "RUBEN"
+    },
+    {
+      "id": "0013",
+      "scope": "empresa",
+      "date": "2026-05-08",
+      "category": "CUSTOS FIXOS",
+      "description": "APARTAMENTO",
+      "amount": 1163.0,
+      "payment": "Boleto",
+      "bank": "INFINITEPAY PJ",
+      "notes": "PAGAMENTO APTO",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0014",
+      "scope": "empresa",
+      "date": "2026-05-08",
+      "category": "CUSTOS FIXOS",
+      "description": "PRESTAÇÃO MOTO",
+      "amount": 600.57,
+      "payment": "Boleto",
+      "bank": "INFINITEPAY PJ",
+      "notes": "PAGAMENTO MOTO",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0015",
+      "scope": "empresa",
+      "date": "2026-05-09",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "RUBEN AJUDANTE",
+      "amount": 300.0,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "PAGAMENTO RUBEN",
+      "person": "RUBEN"
+    },
+    {
+      "id": "0016",
+      "scope": "empresa",
+      "date": "2026-05-09",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "MERCADO",
+      "amount": 215.0,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "CHURRASCO DIAS DAS MAES",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0017",
+      "scope": "empresa",
+      "date": "2026-05-10",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "DIVERSOS",
+      "amount": 50.0,
+      "payment": "PIX",
+      "bank": "ITAU PF",
+      "notes": "DIZIMO",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0020",
+      "scope": "empresa",
+      "date": "2026-05-11",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "COMBUSTIVEL",
+      "amount": 100.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "COMBUSTIVEL FIESTA",
+      "person": "WS"
+    },
+    {
+      "id": "0021",
+      "scope": "empresa",
+      "date": "2026-05-11",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "DIVERSOS",
+      "amount": 40.0,
+      "payment": "Cartão",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "PEDAGIO",
+      "person": "WS"
+    },
+    {
+      "id": "0023",
+      "scope": "empresa",
+      "date": "2026-05-12",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Fornecedor 1 REGIONAL",
+      "amount": 678.0,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "ROSANA"
+    },
+    {
+      "id": "0024",
+      "scope": "empresa",
+      "date": "2026-05-12",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "DIVERSOS",
+      "amount": 62.5,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "SINAL BLUSA WS SISTEMAS",
+      "person": "MAZEN"
+    },
+    {
+      "id": "0025",
+      "scope": "empresa",
+      "date": "2026-05-12",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "ALMOÇO",
+      "amount": 18.5,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "PASTEL",
+      "person": ""
+    },
+    {
+      "id": "0026",
+      "scope": "empresa",
+      "date": "2026-05-13",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "ALMOÇO",
+      "amount": 42.5,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "ALMOÇO OBRA SÃO CAETANO",
+      "person": "DWS"
+    },
+    {
+      "id": "0027",
+      "scope": "empresa",
+      "date": "2026-05-13",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "DIVERSOS",
+      "amount": 43.26,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MINI MERCADO",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0028",
+      "scope": "empresa",
+      "date": "2026-05-14",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Fornecedor 1 REGIONAL",
+      "amount": 105.56,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "COND.SP"
+    },
+    {
+      "id": "0032",
+      "scope": "empresa",
+      "date": "2026-05-15",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "DIVERSOS",
+      "amount": 75.2,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "TROCA DE OLEO MOTO",
+      "person": "WS"
+    },
+    {
+      "id": "0033",
+      "scope": "empresa",
+      "date": "2026-05-15",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "Fornecedor 5 DIPROSEG",
+      "amount": 75.69,
+      "payment": "PIX",
+      "bank": "INFINITEPAY PJ",
+      "notes": "MATERIAIS INSTALAÇÃO",
+      "person": "WS"
+    },
+    {
+      "id": "0034",
+      "scope": "empresa",
+      "date": "2026-05-15",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "DIVERSOS",
+      "amount": 12.88,
+      "payment": "PIX",
+      "bank": "ITAU PF",
+      "notes": "MINI MERCADO",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0035",
+      "scope": "empresa",
+      "date": "2026-05-15",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "RUBEN AJUDANTE",
+      "amount": 450.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "PAGAMENTO RUBEN",
+      "person": "RUBEN"
+    },
+    {
+      "id": "0036",
+      "scope": "empresa",
+      "date": "2026-05-16",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "COMBUSTIVEL",
+      "amount": 100.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "COMBUSTIVEL FIESTA",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0037",
+      "scope": "empresa",
+      "date": "2026-05-15",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "IMPOSTO",
+      "amount": 86.05,
+      "payment": "Boleto",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "PAGAMENTO MEI",
+      "person": "WELVERT"
+    },
+    {
+      "id": "0038",
+      "scope": "empresa",
+      "date": "2026-05-18",
+      "category": "CUSTOS FIXOS",
+      "description": "CONTABILIDADE",
+      "amount": 750.0,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "DESENQUADRAMENTO MEI 50%",
+      "person": "ADVANCED"
+    },
+    {
+      "id": "0039",
+      "scope": "empresa",
+      "date": "2026-05-18",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "DIVERSOS",
+      "amount": 102.96,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "PETZ",
+      "person": "CASA"
+    },
+    {
+      "id": "0040",
+      "scope": "empresa",
+      "date": "2026-05-18",
+      "category": "CUSTOS VARIAVEIS",
+      "description": "MERCADO",
+      "amount": 760.04,
+      "payment": "PIX",
+      "bank": "MERCADO PAGO PJ",
+      "notes": "DESPESA CASA",
+      "person": "CASA"
+    }
+  ],
+  "client": [
+    {
+      "id": "cli-belfone",
+      "scope": "empresa",
+      "name": "BELFONE",
+      "phone": "",
+      "email": "",
+      "notes": "COMISSÃO BELLFONE"
+    },
+    {
+      "id": "cli-dws",
+      "scope": "empresa",
+      "name": "DWS",
+      "phone": "",
+      "email": "",
+      "notes": "PRESTAÇÃO DE SERVIÇOS"
+    },
+    {
+      "id": "cli-elite",
+      "scope": "empresa",
+      "name": "ELITE",
+      "phone": "",
+      "email": "",
+      "notes": "VISITA CAJAMAR DESLOCAMENTO"
+    },
+    {
+      "id": "cli-fabiano",
+      "scope": "empresa",
+      "name": "FABIANO",
+      "phone": "",
+      "email": "",
+      "notes": "MANUTENÇÃO INTERFONE"
+    },
+    {
+      "id": "cli-rosana",
+      "scope": "empresa",
+      "name": "ROSANA",
+      "phone": "",
+      "email": "",
+      "notes": "MATERIAIS INSTALAÇÃO"
+    },
+    {
+      "id": "cli-wiliam-sp",
+      "scope": "empresa",
+      "name": "WILIAM SP",
+      "phone": "",
+      "email": "",
+      "notes": "MANUTENÇÃO INTERFONE"
+    }
+  ],
+  "supplier": [
+    {
+      "id": "for-advanced",
+      "scope": "empresa",
+      "name": "ADVANCED",
+      "phone": "",
+      "email": "",
+      "notes": "CONTABILIDADE"
+    },
+    {
+      "id": "for-casa",
+      "scope": "empresa",
+      "name": "CASA",
+      "phone": "",
+      "email": "",
+      "notes": "MERCADO"
+    },
+    {
+      "id": "for-cond-sp",
+      "scope": "empresa",
+      "name": "COND.SP",
+      "phone": "",
+      "email": "",
+      "notes": "Fornecedor 1 REGIONAL"
+    },
+    {
+      "id": "for-dws",
+      "scope": "empresa",
+      "name": "DWS",
+      "phone": "",
+      "email": "",
+      "notes": "ALMOÇO"
+    },
+    {
+      "id": "for-helio",
+      "scope": "empresa",
+      "name": "HELIO",
+      "phone": "",
+      "email": "",
+      "notes": "Equipamento instalação"
+    },
+    {
+      "id": "for-mazen",
+      "scope": "empresa",
+      "name": "MAZEN",
+      "phone": "",
+      "email": "",
+      "notes": "DIVERSOS"
+    },
+    {
+      "id": "for-rosana",
+      "scope": "empresa",
+      "name": "ROSANA",
+      "phone": "",
+      "email": "",
+      "notes": "Fornecedor 1 REGIONAL"
+    },
+    {
+      "id": "for-ruben",
+      "scope": "empresa",
+      "name": "RUBEN",
+      "phone": "",
+      "email": "",
+      "notes": "RUBEN AJUDANTE"
+    },
+    {
+      "id": "for-welvert",
+      "scope": "empresa",
+      "name": "WELVERT",
+      "phone": "",
+      "email": "",
+      "notes": "IMPOSTO"
+    },
+    {
+      "id": "for-ws",
+      "scope": "empresa",
+      "name": "WS",
+      "phone": "",
+      "email": "",
+      "notes": "Fornecedor 5 DIPROSEG"
+    }
+  ]
+}
