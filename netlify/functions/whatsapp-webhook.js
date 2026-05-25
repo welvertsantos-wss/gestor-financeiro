@@ -24,6 +24,7 @@ const DEFAULT_STATE = {
   supplier: []
 };
 
+
 exports.handler = async (event) => {
   if (event.httpMethod === "GET") return verifyWebhook(event);
   if (event.httpMethod !== "POST") return response(405, { error: "Method not allowed" });
@@ -67,7 +68,7 @@ function extractMessages(payload) {
 }
 
 async function handleIncomingMessage(message) {
-  const userId = await resolveUserId(message.from);
+  const userId = process.env.WHATSAPP_TEST_USER_ID || await resolveUserId(message.from);
   const parsed = parseFinancialMessage(message.text);
   await saveMessage({ userId, phone: message.from, direction: "inbound", body: message.text, parsed });
 
